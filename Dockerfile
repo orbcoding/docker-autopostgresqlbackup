@@ -17,7 +17,6 @@ RUN chmod +x /usr/local/bin/automysqlbackup
 COPY root /root
 RUN chmod 755 /root/cron_automysqlbackup.sh /root/run.sh
 
-VOLUME /backup
 WORKDIR /backup
 
 CMD ["/root/run.sh"]
