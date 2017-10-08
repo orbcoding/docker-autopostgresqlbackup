@@ -12,9 +12,9 @@ Please define all environmental variables mentioned below
     container_name: mysqlbackup
     image: sharetransition/alpine3.6-cron-automysqlbackup3-gmail
     environment:
-      - DB_USERNAME=user
-      - DB_PASSWORD=password
-      - DBHOST=mysql
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_HOST=mysql
       - GMAIL_ACCOUNT=myaccount@gmail.com
       - GMAIL_PASSWORD=mygmailpassword
       - RECIPIENT_EMAIL=recipent@email.com
