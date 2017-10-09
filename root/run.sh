@@ -9,3 +9,9 @@ echo "account default : gmail" >> /etc/msmtprc
 # start cron
 for crontab in /root/crontabs/*; do /usr/bin/crontab "$crontab"; done
 /usr/sbin/crond -f -l 8
+
+# set timezone
+apk add tzdata
+cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+echo "$TIMEZONE" > /etc/timezone
+apk del tzdata
