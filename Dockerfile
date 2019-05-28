@@ -6,6 +6,12 @@ RUN apk upgrade
 RUN apk add --no-cache mysql-client
 RUN apk add bash
 
+# Set timezone
+RUN apk add tzdata
+RUN cp /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+RUN echo "Europe/Stockholm" >  /etc/timezone
+RUN apk del tzdata
+
 RUN apk add msmtp ca-certificates
 COPY msmtprc /etc/msmtprc
 
