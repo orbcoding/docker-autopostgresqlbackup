@@ -1,0 +1,2 @@
+# Every day at 03:00
+0 3 * * * /home/user/cron_automysqlbackup.sh >> /home/user/cron_automysqlbackup.log

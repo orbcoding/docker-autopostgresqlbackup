@@ -14,5 +14,5 @@ apk del tzdata
 
 
 # start cron
-for crontab in /root/crontabs/*; do /usr/bin/crontab "$crontab"; done
+for crontab in /home/user/crontabs/*; do /usr/bin/crontab "$crontab"; done
 /usr/sbin/crond -f -l 8
