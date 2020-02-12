@@ -1,28 +1,22 @@
 # Build
-FROM alpine:3.6
+FROM alpine:3.11
 
-RUN apk update
-RUN apk upgrade
-RUN apk add --no-cache mysql-client
-RUN apk add bash
+RUN apk add --update --upgrade --no-cache postgresql gzip busybox-suid bash tzdata msmtp ca-certificates
 
 # Set timezone
-RUN apk add tzdata
 RUN cp /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 RUN echo "Europe/Stockholm" >  /etc/timezone
-RUN apk del tzdata
 
-RUN apk add msmtp ca-certificates
 COPY msmtprc /etc/msmtprc
 
-RUN mkdir /etc/automysqlbackup /home/user /home/user/backup
-COPY automysqlbackup-v3.0_rc6/automysqlbackup /usr/local/bin
-RUN chmod +x /usr/local/bin/automysqlbackup
+RUN mkdir /home/docker /home/docker/backups
+COPY autopostgresqlbackup.sh /usr/local/bin/autopostgresqlbackup
+RUN chmod +x /usr/local/bin/autopostgresqlbackup
 
-COPY home /home/user
-RUN chown -R 1000:1000 /home/user
-RUN chmod -R 755 /home/user
+COPY home /home/docker
+RUN chown -R 1000:1000 /home/docker /etc/msmtprc /etc/timezone /usr/share/zoneinfo /etc/localtime
+RUN chmod -R 755 /home/docker
 
-WORKDIR /home/user
+WORKDIR /home/docker
 
-CMD ["/root/run.sh"]
+CMD ["/home/docker/run.sh"]

@@ -1,23 +1,23 @@
 # Usage
 
-- All crontab files in `/root/crontabs` will be run at startup. Use mounts to override or add more. The automysqlbackup crontab is by default set to 03:00 every day. 
-- Check out the automysqlbackup config or mount a new one to `/etc/automysqlbackup/automysqlbackup.conf`.
+- All crontab files in `/root/crontabs` will be run at startup. Use mounts to override or add more. The autopostgresqlbackup crontab is by default set to 03:00 every day.
+- Check out the autopostgresqlbackup config or mount a new one to `/etc/autopostgresqlbackup/autopostgresqlbackup`.
 
 # Sample from docker-compose
 
 Please define all environmental variables mentioned below
 
 ```
-  mysqlbackup:
-    container_name: mysqlbackup
-    image: sharetransition/alpine3.6-cron-automysqlbackup3-gmail
+  postgresqlbackup:
+    container_name: postgresqlbackup
+    image: sharetransition/postgresqlbackup
     environment:
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-      - MYSQL_HOST=mysql
+      - DATABASE_USER=user
+      - DATABASE_PASSWORD=password
+      - DATABASE_HOST=db
       - GMAIL_ACCOUNT=myaccount@gmail.com
       - GMAIL_PASSWORD=mygmailpassword
       - RECIPIENT_EMAIL=recipent@email.com
     depends_on:
-      - mysql
+      - db
 ```

@@ -6,13 +6,14 @@ echo "user           $GMAIL_ACCOUNT" >> /etc/msmtprc
 echo "password       $GMAIL_PASSWORD" >> /etc/msmtprc
 echo "account default : gmail" >> /etc/msmtprc
 
-# set timezone
-apk add tzdata
-cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
-echo "$TIMEZONE" > /etc/timezone
-apk del tzdata
+# set timezone eg Europe/Stockholm
+if [ ! -z $TIMEZONE ]; then
+	echo "Setting timezone $TIMEZONE (Default was Europe/Stockholm)"
+	cat /usr/share/zoneinfo/"$TIMEZONE" > /etc/localtime
+	echo "$TIMEZONE" > /etc/timezone
+fi
 
 
 # start cron
-for crontab in /home/user/crontabs/*; do /usr/bin/crontab "$crontab"; done
+for crontab in /home/docker/crontabs/*; do /usr/bin/crontab "$crontab"; done
 /usr/sbin/crond -f -l 8
