@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # export gmail account
+cat /etc/msmtprc_backup > /etc/msmtprc
 echo "from           $GMAIL_ACCOUNT" >> /etc/msmtprc
 echo "user           $GMAIL_ACCOUNT" >> /etc/msmtprc
 echo "password       $GMAIL_PASSWORD" >> /etc/msmtprc
@@ -15,7 +16,5 @@ if [ ! -z $TIMEZONE ]; then
 	echo "$TIMEZONE" > /etc/timezone
 fi
 
-
 # start cron
-for crontab in /home/docker/crontabs/*; do /usr/bin/crontab "$crontab"; done
-/usr/sbin/crond -f -l 8
+/usr/sbin/crond -d 0 -l 0 -f

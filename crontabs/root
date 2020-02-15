@@ -1,0 +1,3 @@
+# Every day at 03:00
+# 0 3 * * * su - docker -c "/home/docker/cron_autopostgresqlbackup.sh >> /home/docker/cron_autopostgresqlbackup.log"
+0 3 * * * /home/docker/cron_autopostgresqlbackup.sh
