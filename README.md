@@ -1,9 +1,10 @@
 # Usage
 
-- All crontab files in `/root/crontabs` will be run at startup. Use mounts to override or add more. The autopostgresqlbackup crontab is by default set to 03:00 every day.
-- Check out the autopostgresqlbackup config or mount a new one to `/etc/autopostgresqlbackup/autopostgresqlbackup`.
+Runs `/etc/crontabs/root`. Mount to overwrite.
+If want non root uid 1000 actions just run `su - docker -c "cmd"`
 
-# Sample from docker-compose
+Daily Backups are run 03:00 and rotated weekly.
+Weekly Backups are run on Sunday with 5 week rotation.
 
 Please define all environmental variables mentioned below
 
@@ -18,6 +19,4 @@ Please define all environmental variables mentioned below
       - GMAIL_ACCOUNT=myaccount@gmail.com
       - GMAIL_PASSWORD=mygmailpassword
       - RECIPIENT_EMAIL=recipent@email.com
-    depends_on:
-      - db
 ```

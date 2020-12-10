@@ -90,7 +90,7 @@ COMMCOMP=0
 LATEST=no
 
 # OPT string for use with pg_dump ( see man pg_dump )
-OPT=""
+OPT="--no-owner --no-acl"
 
 # Backup files extension
 EXT="sql"

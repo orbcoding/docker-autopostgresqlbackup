@@ -17,4 +17,4 @@ if [ ! -z $TIMEZONE ]; then
 fi
 
 # start cron
-/usr/sbin/crond -d 0 -l 0 -f
+/usr/sbin/crond -f -d 0
