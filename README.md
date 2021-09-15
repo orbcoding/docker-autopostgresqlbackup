@@ -6,6 +6,8 @@ If want non root uid 1000 actions just run `su - docker -c "cmd"`
 Daily Backups are run 03:00 and rotated weekly.
 Weekly Backups are run on Sunday with 5 week rotation.
 
+See run.sh for overwriting timezone that defaults to Europe/Stockholm.
+
 Please define all environmental variables mentioned below
 
 ```
@@ -16,7 +18,11 @@ Please define all environmental variables mentioned below
       - DATABASE_USER=user
       - DATABASE_PASSWORD=password
       - DATABASE_HOST=db
-      - GMAIL_ACCOUNT=myaccount@gmail.com
-      - GMAIL_PASSWORD=mygmailpassword
+      - BACKUP_TIMEZONE=Europe/Stockholm # Default Europe/Stockholm
+      - BACKUP_EMAIL_HOST=smtp@gmail.com
+      - BACKUP_EMAIL_PORT=587
+      - BACKUP_EMAIL_FROM=myaccount@gmail.com
+      - BACKUP_EMAIL_TO=myaccount@gmail.com
+      - BACKUP_EMAIL_PASSWORD=mygmailpassword
       - RECIPIENT_EMAIL=recipent@email.com
 ```
