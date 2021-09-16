@@ -21,7 +21,7 @@ echo "account default : backup" >> /etc/msmtprc
 echo "$DATABASE_HOST:*:*:$DATABASE_USERNAME:$DATABASE_PASSWORD" > /home/docker/.pgpass
 
 # set timezone eg Europe/Stockholm
-if [ -n $BACKUP_TIMEZONE ]; then
+if [ -n "$BACKUP_TIMEZONE" ]; then
 	echo "Setting timezone $BACKUP_TIMEZONE"
 	cat /usr/share/zoneinfo/"$BACKUP_TIMEZONE" > /etc/localtime
 	echo "$BACKUP_TIMEZONE" > /etc/timezone
